@@ -30,7 +30,7 @@
   - requests
   - os
   - re
-  - zhipuai  --王者低战区查询功能依赖库--
+  - zhipuai
 
 ## 运行方法
 ```python
