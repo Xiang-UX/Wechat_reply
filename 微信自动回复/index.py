@@ -2,24 +2,18 @@
 import json, re, time, requests, threading
 from uiautomation import WindowControl
 from wxauto import *
-from AI_chat import *  # 导入聊天模块
-from Honor_of_Kings import *  # 导入王者荣耀模块
-from webpage import *  # 导入文件模块
-from gif_download import *  # 导入gif下载模块
+from AI_chat import * 
+from Honor_of_Kings import * 
+from webpage import * 
+from gif_download import *
 
 wxchat = WeChat()
 
-# 允许回复的nickname列表
 allowed_nicknames = []  # 修改为你想要回复的nickname
-
-# 绑定微信主窗口
 wx = WindowControl(
 	Name='微信', ClassName="WeChatMainWndForPC"
 )
-# 切换窗口
 wx.SwitchToThisWindow()
-
-# 寻找会话控件绑定
 hw = wx.ListControl(Name='会话')
 we = hw.TextControl(searchDepth=4)
 
@@ -33,7 +27,7 @@ def check_wechat_messages(hw):
 			match = re.match(r'(.+?)(\d+)条新消息', chatMsg.Name)
 			if match:
 				nickname = match.group(1)
-				if nickname in allowed_nicknames:  # 仅在nickname在允许列表中时才回复
+				if nickname in allowed_nicknames:
 					message_count = int(match.group(2))
 					printInfo = f"来自 {nickname} 的{message_count} 条消息"
 					print(printInfo)
@@ -45,10 +39,6 @@ def getMsg_send(nickname):
 		we.Click(simulateMove=False)
 		last_msg = wx.ListControl(Name='消息').GetChildren()[-1].Name
 		print(f"{nickname}:", last_msg)
-		# 获取来的消息
-		# thread = threading.Thread(target=dispose, args=(nickname, last_msg))
-		# 启动线程
-		# thread.start()
 		dispose(nickname, last_msg)
 
 
@@ -56,7 +46,6 @@ def dispose(nickname, last_msg):
 	slash_index = last_msg.find('/')
 	front_string = last_msg[:slash_index]
 	back_string = last_msg[slash_index + 1:]
-	# 如果分割后只有一个部分，说明没有找到分隔符
 	if slash_index == -1:
 		if last_msg in ["帮助", "help"]:
 			print(f"来自 {nickname} 的帮助请求")
