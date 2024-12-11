@@ -36,8 +36,7 @@
 ```python
 
 # 允许回复的列表
-allowed_nicknames = ["name1", "name2","..."]  # 修改为你想要回复的nickname
-
+allowed_nicknames = ["name1", "name2","..."]  # 修改为你想要回复的微信备注，注意是备注！
 ```
 ```python
 # 这里可以根据需求修改，其中传入的参数为用户的昵称和用户发送的消息
