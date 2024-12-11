@@ -18,17 +18,15 @@ def zp_chat(nickname, last_msg):
                  "content": "回复1至150字就行"},
                 nicknames
             ],
-
         else:
-            # 非第一次对话
             conversation_history[nickname][0].append(nicknames)
         messages = conversation_history[nickname][0]
         # print(messages)
 
-        client = ZhipuAI(api_key="74f87e77ee8056745abe411b4faa4d0c.vMKX3yk05es0qw7m")  # 请填写您自己的APIKey
+        client = ZhipuAI(api_key="") 
 
         response = client.chat.completions.create(
-            model="glm-4-plus",  # 请填写您要调用的模型名称
+            model="glm-4-plus", 
             messages=messages,
             max_tokens=300,
             top_p=0.2,
