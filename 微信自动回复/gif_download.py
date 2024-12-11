@@ -8,7 +8,7 @@ def gif_download(key):
 	if key not in ['', None]:
 		url = f"https://api.doutub.com/api/bq/getBqlistByKeyword?keyword={key}&curPage=1&pageSize=100"
 		headers = {
-			"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0",
+			"User-Agent": "",
 
 		}
 		response = requests.get(url, headers=headers)
@@ -44,9 +44,7 @@ def gif_download(key):
 			layout = i['layout']
 			# print(uid, imgName, path, layout)
 			headers = {
-				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0",
-				"referer": "https://api.doutub.com/",
-				"host": "qn.doutub.com"
+				"User-Agent": ""
 			}
 			response = requests.get(path, headers=headers)
 			with open(f"./page/gif/{key}/{imgName}.{layout}", "wb") as file:
